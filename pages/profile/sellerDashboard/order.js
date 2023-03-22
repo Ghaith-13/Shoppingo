@@ -651,9 +651,9 @@ function order() {
     الطلبات
   </div>
 
-  {ItemsDisplayed.map((item)=>{
+  {ItemsDisplayed.map((item,index)=>{
     return(
-      <div className='flex md:flex-row flex-col md:justify-between  w-3/4 border my-5  px-5 py-10 mx-auto shadow-md text-black rounded-lg dark:border-0 dark:shadow-white dark:shadow-sm '>
+      <div key={index} className='flex md:flex-row flex-col md:justify-between  w-3/4 border my-5  px-5 py-10 mx-auto shadow-md text-black rounded-lg dark:border-0 dark:shadow-white dark:shadow-sm '>
         <div className=' flex flex-col justify-start items-center py-2 md:py-0 border-b md:border-0'> 
           <div className='font-bold dark:text-white'>معلومات الزبون</div>
           <div className='dark:text-white'>{item.typeOfCustumer}</div>
