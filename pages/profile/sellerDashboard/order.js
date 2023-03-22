@@ -8,7 +8,7 @@ import Popup from 'reactjs-popup';
 
 
 
-function order() {
+function Order() {
   // constants
   const [items,setItems] =useState([
    {"typeOfCustumer":"غيث عثمان",
@@ -723,4 +723,4 @@ function order() {
 </>  )
 }
 
-export default order
+export default Order
