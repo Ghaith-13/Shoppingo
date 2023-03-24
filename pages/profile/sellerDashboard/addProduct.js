@@ -34,15 +34,16 @@ const AddProduct = () => {
       if(Check)
       {
         setArrayForSizes(ArrayForSizes => [...ArrayForSizes, value])
-        // console.log(ArrayForSizes,"yes");
+        console.log(ArrayForSizes,"yes");
       }
       else{
         // console.log(ArrayForSizes,"not");
+        ArrayForSizes.forEach(function(item, i) { if (item == value)  ArrayForSizes[i] = value+2; });
 
-        setArrayForSizes (ArrayForSizes.filter(function(item) {
-          return item !== value;
-      }))
-      // console.log(ArrayForSizes,"not");
+      //   setArrayForSizes (ArrayForSizes.filter(function(item) {
+      //     return item !== value;
+      // }))
+      console.log(ArrayForSizes,"not");
 
       }
       // console.log(ArrayForSizes,"sss");

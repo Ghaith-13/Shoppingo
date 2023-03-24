@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
-import Navbar from '../../../components/Navbar';
+import Navbar from '../../components/Navbar';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useState } from 'react';
-import OneOrder from '../../../components/SellerDashboard/OneOrder';
+import OneOrder from '../../components/SellerDashboard/OneOrder';
 
-function Order() {
+function MyPurchases() {
   // constants
-  const items = [
+  const [items, setItems] = useState([
     {
       typeOfCustumer: 'غيث عثمان',
       TypeOfProduct:
@@ -2165,7 +2165,7 @@ function Order() {
       city: 'حمص',
       Address: ' شارع الحضارة',
     },
-  ];
+  ]);
   const [ItemsDisplayed, setItemsDisplayed] = useState(items.slice(0, 10));
   const [FirstArrow, setFirstArrow] = useState(false);
   const [LastArrow, setLastArrow] = useState(true);
@@ -2186,10 +2186,10 @@ function Order() {
       <Navbar />
       <div className="pt-28 pb-10 flex flex-col w-full  ">
         <div className=" py-5 mb-3 w-full font-bold flex justify-center bg-gradient-to-l from-gradientFrom to-gradientTo dark:bg-gradient-to-tr dark:from-darkBgColor dark:to-darkTextColor2 text-white text-xl">
-          الطلبات
+          مشترياتي
         </div>
-        <div className="flex flex-col md:flex-row w-full justify-between px-10">
-          <select className="text-end mb-3 md:mb-0 rounded shadow-sm hover:bg-slate-100  dark:hover:bg-darkTextColor2 dark:shadow-white">
+        <div className="flex w-full flex-col md:flex-row justify-between px-10">
+          <select className="mb-2 text-end md:mb-0 rounded shadow-sm hover:bg-slate-100  dark:hover:bg-darkTextColor2 dark:shadow-white">
             <option selected hidden>
               تصنيف حسب المعالجة
             </option>
@@ -2197,7 +2197,7 @@ function Order() {
             <option value="Processing">قيد المعالجة</option>
             <option value="NotYet">لم تتم المعالجة بعد</option>
           </select>
-          <select className="text-end rounded shadow-sm hover:bg-slate-100  dark:hover:bg-darkTextColor2 dark:shadow-white">
+          <select className="rounded text-end shadow-sm hover:bg-slate-100  dark:hover:bg-darkTextColor2 dark:shadow-white">
             <option selected hidden>
               تصنيف حسب التاريخ
             </option>
@@ -2209,7 +2209,7 @@ function Order() {
 
         {ItemsDisplayed.map((item, index) => {
           return (
-            <OneOrder value={item} key={index} page1={true} page2={false} />
+            <OneOrder value={item} key={index} page2={true} page1={false} />
           );
         })}
         <ReactPaginate
@@ -2240,4 +2240,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default MyPurchases;
