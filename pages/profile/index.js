@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { BsCamera } from "react-icons/bs";
-import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
+import React, { useState } from 'react';
+import { BsCamera } from 'react-icons/bs';
+import { useRouter } from 'next/router';
+import Navbar from '../../components/Navbar';
 
 const Profile = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const Profile = () => {
   const [enableWepayCode, setEnableWepayCode] = useState(true);
 
   //! **********************
-  
+
   //*** the default values for inputs (meaning the deafault values as defaultchecked ...) from redux
   //*** the values which will be sent to the backend
   const [name, setName] = useState();
@@ -28,37 +28,36 @@ const Profile = () => {
   const [onhand, setOnhand] = useState(false);
   const [wepayCode, setWepayCode] = useState();
 
-
   //************************************************ */
 
   //! if the user does not have a profile photo then we put default.jpg but if he has we put his photo
   //! change the image and send it to backend then change it in redux
-  const [img, setImg] = useState("default.jpg");
+  const [img, setImg] = useState('default.jpg');
   const updateImage = (e) => {
-
-      //! for preview
-      if(e.target.files[0]){
-          document.getElementById('imgProfile').src=URL.createObjectURL(e.target.files[0])
-      }
-
+    //! for preview
+    if (e.target.files[0]) {
+      document.getElementById('imgProfile').src = URL.createObjectURL(
+        e.target.files[0]
+      );
+    }
   };
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div
         className={
           userStatus == 1
-            ? "pt-28 px-4 md:px-8 w-full min-h-screen flex flex-col md:flex-row text-textColor dark:text-darkTextColor"
-            : "pt-28 md:pt-40 pb-10 px-4 md:px-8 w-full min-h-screen flex flex-col md:flex-row text-textColor dark:text-darkTextColor"
+            ? 'pt-28 px-4 md:px-8 w-full min-h-screen flex flex-col md:flex-row text-textColor dark:text-darkTextColor'
+            : 'pt-28 md:pt-40 pb-10 px-4 md:px-8 w-full min-h-screen flex flex-col md:flex-row text-textColor dark:text-darkTextColor'
         }
       >
         {/* Left */}
         <div
           className={
             userStatus == 1
-              ? "md:pt-20 w-full md:w-1/2 flex flex-col space-y-10  items-center"
-              : "w-full md:w-1/2 flex flex-col space-y-10  items-center"
+              ? 'md:pt-20 w-full md:w-1/2 flex flex-col space-y-10  items-center'
+              : 'w-full md:w-1/2 flex flex-col space-y-10  items-center'
           }
         >
           <div className="relative">
@@ -83,29 +82,36 @@ const Profile = () => {
               onChange={updateImage}
             />
           </div>
-
-          {userStatus == 2 ? (
+          <div className="flex  space-x-5">
             <button
-              onClick={() => router.push("/profile/confirmSellers")}
+              onClick={() => router.push('/profile/myPurchases')}
               className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
             >
-              ترقية التجار
+              مشترياتي
             </button>
-          ) : userStatus == 1 ? (
-            <button
-              onClick={() => router.push("/profile/sellerDashboard")}
-              className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
-            >
-              إحصائياتي
-            </button>
-          ) : (
-            <button
-              onClick={() => router.push("/profile/upgrade")}
-              className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
-            >
-              ترقية الحساب
-            </button>
-          )}
+            {userStatus == 2 ? (
+              <button
+                onClick={() => router.push('/profile/confirmSellers')}
+                className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
+              >
+                ترقية التجار
+              </button>
+            ) : userStatus == 1 ? (
+              <button
+                onClick={() => router.push('/profile/sellerDashboard')}
+                className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
+              >
+                إحصائياتي
+              </button>
+            ) : (
+              <button
+                onClick={() => router.push('/profile/upgrade')}
+                className="p-2 bg-gradient-to-l from-gradientFrom to-gradientTo hover:bg-gradient-to-b"
+              >
+                ترقية الحساب
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Right */}
@@ -195,7 +201,7 @@ const Profile = () => {
                     defaultChecked={false}
                     type="checkbox"
                     id="onHand"
-                    onChange={() => setOnhand(prev => !prev)}
+                    onChange={() => setOnhand((prev) => !prev)}
                     className="w-4 h-4"
                   />
                 </div>
@@ -210,41 +216,37 @@ const Profile = () => {
                     defaultChecked={true}
                     type="checkbox"
                     id="wepay"
-                    onChange={() => setOnline(prev => !prev)}
+                    onChange={() => setOnline((prev) => !prev)}
                     className="w-4 h-4"
                   />
                 </div>
               </div>
-              {
-                online && (
-                  <>
-                    <label className="text-end">: wepay كود حسابي على </label>
-                    <div className="flex justify-end h-10 space-x-5">
-                      <span
-                        onClick={() => setEnableWepayCode((prev) => !prev)}
-                        className="text-gray-500 underline hover:text-textColor dark:hover:text-darkTextColor cursor-pointer self-center"
-                      >
-                        تعديل
-                      </span>
-                      <input
-                        type="text"
-                        defaultValue="1234567890"
-                        disabled={enableWepayCode}
-                        onChange={(e) => setWepayCode(e.target.value)}
-                        className="w-[70%] rounded-md outline-none text-end pr-2 shadow-sm shadow-shadowColor"
-                      />
-                    </div>
-                  </>
-                )
-              }
+              {online && (
+                <>
+                  <label className="text-end">: wepay كود حسابي على </label>
+                  <div className="flex justify-end h-10 space-x-5">
+                    <span
+                      onClick={() => setEnableWepayCode((prev) => !prev)}
+                      className="text-gray-500 underline hover:text-textColor dark:hover:text-darkTextColor cursor-pointer self-center"
+                    >
+                      تعديل
+                    </span>
+                    <input
+                      type="text"
+                      defaultValue="1234567890"
+                      disabled={enableWepayCode}
+                      onChange={(e) => setWepayCode(e.target.value)}
+                      className="w-[70%] rounded-md outline-none text-end pr-2 shadow-sm shadow-shadowColor"
+                    />
+                  </div>
+                </>
+              )}
             </>
           ) : (
             <></>
           )}
 
-          <button className="self-end py-1 px-5">
-            إرسال
-          </button>
+          <button className="self-end py-1 px-5">إرسال</button>
         </div>
       </div>
     </>
