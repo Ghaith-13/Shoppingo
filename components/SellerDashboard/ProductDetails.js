@@ -41,13 +41,8 @@ function ProductDetails(props) {
                     key,
                     index
                   ) {
-                    console.log(
-                      props.value.value.sizes[key][index],
-                      '    ',
-                      key
-                    );
                     return (
-                      <div className="flex w-1/3 flex-col  ">
+                      <div className="flex w-1/3 flex-col  " key={index}>
                         <div className="font-bold w-full">{key}</div>
                         <div className="flex h-14 flex-wrap justify-evenly overflow-y-auto sliderScroll space-x-1  space-y-2">
                           {props.value.value.sizes[key].map(function (
@@ -55,14 +50,13 @@ function ProductDetails(props) {
                             index
                           ) {
                             return (
-                              <>
-                                <div
-                                  style={{
-                                    backgroundColor: `${props.value.value.sizes[key][index]}`,
-                                  }}
-                                  className=" w-4 h-4 mx-1 rounded-full bg-black my-2"
-                                ></div>
-                              </>
+                              <div
+                                key={index}
+                                style={{
+                                  backgroundColor: `${props.value.value.sizes[key][index]}`,
+                                }}
+                                className=" w-4 h-4 mx-1 rounded-full bg-black my-2"
+                              ></div>
                             );
                           })}
                         </div>
